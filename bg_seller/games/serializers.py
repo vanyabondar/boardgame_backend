@@ -4,7 +4,7 @@ from games.models import Game, Author, GameCategory
 class GameSerializer(serializers.ModelSerializer):
 
 	game_category = serializers.SlugRelatedField(slug_field="game_category_name", read_only=True, many=True)
-	# authors = serializers.SlugRelatedField(slug_field="author_name", read_only=True, many=True)
+	authors = serializers.SlugRelatedField(slug_field="author_name", read_only=True, many=True)
 
 	class Meta:
 		model = Game

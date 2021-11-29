@@ -22,8 +22,10 @@ class Game(models.Model):
 	authors = models.ManyToManyField(
 		'games.Author',
 		blank=True,
+		related_name="games",
 		)
 	game_category = models.ManyToManyField(
 		'games.GameCategory',
 		blank=True,
+		related_name="games",
 		)
