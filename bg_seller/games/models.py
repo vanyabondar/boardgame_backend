@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Author(models.Model):
-	autor_name = models.CharField(max_length=100)
+	author_name = models.CharField(max_length=100)
 	author_description = models.TextField()
 
 
