@@ -30,14 +30,22 @@ class Game(models.Model):
 	playing_time = models.IntegerField()
 	min_age = models.IntegerField()
 	authors = models.ManyToManyField(
-		'games.Author',
+		Author,
 		blank=True,
-		related_name="games",
-		)
+		related_name='games')
 	game_category = models.ManyToManyField(
-		'games.GameCategory',
+		GameCategory,
 		blank=True,
-		related_name="games",
-		)
+		related_name='games')
 
 
+class Order(models.Model):
+	customer = models.ForeignKey(
+		settings.AUTH_USER_MODEL,
+		related_name='orders',
+		on_delete=models.DO_NOTHING)  # to save information for accounting
+	games = models.ManyToManyField(
+		Game,
+		related_name='orders')
+	time = models.DateTimeField(auto_now_add=True)
+	comment = models.TextField(null=True)
