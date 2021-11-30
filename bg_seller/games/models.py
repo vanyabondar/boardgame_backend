@@ -39,6 +39,16 @@ class Game(models.Model):
 		related_name='games')
 
 
+class OrderItem(models.Model):
+	order_id = models.ForeignKey(
+		'games.Order',
+		on_delete=models.CASCADE)
+	game_id = models.ForeignKey(
+		'games.Game',
+		on_delete=models.CASCADE)
+	quantity = models.IntegerField()
+	
+
 class Order(models.Model):
 	customer = models.ForeignKey(
 		settings.AUTH_USER_MODEL,
@@ -46,6 +56,7 @@ class Order(models.Model):
 		on_delete=models.DO_NOTHING)  # to save information for accounting
 	games = models.ManyToManyField(
 		Game,
-		related_name='orders')
+		related_name='orders',
+		through=OrderItem)
 	time = models.DateTimeField(auto_now_add=True)
 	comment = models.TextField(null=True)
