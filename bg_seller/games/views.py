@@ -20,4 +20,3 @@ class AuthorViewSet(viewsets.ModelViewSet):
 class GameCategoryViewSet(viewsets.ModelViewSet):
 	queryset = GameCategory.objects.all()
 	serializer_class = GameCategorySerializer
-
