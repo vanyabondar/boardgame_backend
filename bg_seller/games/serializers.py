@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from games.models import Game, Author, GameCategory
+from games.models import Game, Author, GameCategory, Order
 
 
 class GameGeneralSerializer(serializers.ModelSerializer):
@@ -21,6 +21,7 @@ class AuthorGeneralSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Author
 		exclude = ('author_description',)
+
 
 class GameSerializer(serializers.ModelSerializer):
 
@@ -54,5 +55,7 @@ class GameCategorySerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 
-
-
+class OrderSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Order
+		fields = '__all__'
