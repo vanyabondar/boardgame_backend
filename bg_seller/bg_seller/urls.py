@@ -14,20 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url, include
-from rest_framework import routers
-from games import views
-
-router = routers.DefaultRouter()
-
-router.register(r'games', views.GameViewSet)
-
-router.register(r'game_categoies', views.GameCategoryViewSet)
-router.register(r'authors', views.AuthorViewSet)
-router.register(r'orders', views.OrderViewSet)
-
+from django.conf.urls import include, url
+from games.urls import router
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url('api/v1/', include(router.urls)),
     url('admin/', admin.site.urls),
 ]

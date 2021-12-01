@@ -63,17 +63,17 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
 class OrderSerializer(serializers.ModelSerializer):
 	order_items = OrderItemSerializer(many=True) 
-
+	customer = serializers.PrimaryKeyRelatedField(required=False, read_only=True)
 	class Meta:
 		model = Order
 		exclude = ('games',)
 
 	def create(self, validated_data):
 		items = validated_data.pop('order_items')
-		order = Order.objects.create(**validated_data)
+		user = self.context.get("request").user
+		order = Order.objects.create(customer=user, **validated_data)
 		for item in items:
-			d = dict(item)
-			OrderItem.objects.create(order=order, game=d['game'], quantity=d['quantity'])
+			OrderItem.objects.create(order=order, **item)
 		return order
 
 	def update(self, instance, validated_data):
@@ -83,7 +83,6 @@ class OrderSerializer(serializers.ModelSerializer):
 				setattr(instance, item, validated_data[item])
 		OrderItem.objects.filter(order=instance).delete()
 		for item in items:
-			d = dict(item)
-			OrderItem.objects.create(order=instance, game=d['game'], quantity=d['quantity'])
+			OrderItem.objects.create(order=instance, **item)
 		instance.save()
 		return instance

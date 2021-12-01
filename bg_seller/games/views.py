@@ -15,13 +15,6 @@ class GameViewSet(viewsets.ModelViewSet):
 	# filterset_fields = ['quantity',]
 
 
-# class GameDetailViewSet(viewsets.ModelViewSet):
-# 	queryset = Game.objects.all()
-# 	serializer_class = GameDetailSerializer
-# 	http_method_names = ['get', 'delete', 'head']
-
-	
-
 class AuthorViewSet(viewsets.ModelViewSet):
 	queryset = Author.objects.all()
 	serializer_class = AuthorSerializer
@@ -33,5 +26,9 @@ class GameCategoryViewSet(viewsets.ModelViewSet):
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-	queryset = Order.objects.all()
+	# queryset = Order.objects.all()
 	serializer_class = OrderSerializer
+	# To filter orders by user
+	def get_queryset(self):
+		return Order.objects.filter(customer=self.request.user)
+
