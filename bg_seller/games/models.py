@@ -40,10 +40,11 @@ class Game(models.Model):
 
 
 class OrderItem(models.Model):
-	order_id = models.ForeignKey(
+	order = models.ForeignKey(
 		'games.Order',
-		on_delete=models.CASCADE)
-	game_id = models.ForeignKey(
+		on_delete=models.CASCADE,
+		related_name='order_items')
+	game = models.ForeignKey(
 		'games.Game',
 		on_delete=models.CASCADE)
 	quantity = models.IntegerField()

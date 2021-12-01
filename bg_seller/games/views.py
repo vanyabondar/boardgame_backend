@@ -15,6 +15,13 @@ class GameViewSet(viewsets.ModelViewSet):
 	# filterset_fields = ['quantity',]
 
 
+# class GameDetailViewSet(viewsets.ModelViewSet):
+# 	queryset = Game.objects.all()
+# 	serializer_class = GameDetailSerializer
+# 	http_method_names = ['get', 'delete', 'head']
+
+	
+
 class AuthorViewSet(viewsets.ModelViewSet):
 	queryset = Author.objects.all()
 	serializer_class = AuthorSerializer

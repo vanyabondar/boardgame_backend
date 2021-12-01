@@ -21,6 +21,7 @@ from games import views
 router = routers.DefaultRouter()
 
 router.register(r'games', views.GameViewSet)
+
 router.register(r'game_categoies', views.GameCategoryViewSet)
 router.register(r'authors', views.AuthorViewSet)
 router.register(r'orders', views.OrderViewSet)
