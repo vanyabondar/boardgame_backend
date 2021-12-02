@@ -15,7 +15,7 @@ from games.serializers import \
 class GameViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = GameSerializer
-    queryset = Game.objects.all()
+    queryset = Game.objects.order_by('pk').all()
     
     filter_backends = [
         filters_rest.SearchFilter, 
