@@ -27,6 +27,7 @@ This is CRUD REST API for board game shop written in Python3 using Django and DR
  - Ordering games by cost, playing time, released year
  - Filtering games by game category and author
  - Search games by name
+ - Pagination
  - Authentication provided by JWT
  - Docker support
 
