@@ -24,7 +24,7 @@ class GameViewSet(viewsets.ModelViewSet):
 
     filter_fields = ['game_category', 'authors',]
     search_fields = ['game_name',]
-    ordering_fields = ["cost", "playing_time", "relised_year"]
+    ordering_fields = ["cost", "playing_time", "released_year"]
     
 
 class AuthorViewSet(viewsets.ModelViewSet):
